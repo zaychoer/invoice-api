@@ -1,0 +1,22 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 3.0
+  Exclude:
+    - db/schema.rb
+    - 'vendor/**/*'
+    - bin/*
+  NewCops: enable
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Style/Documentation:
+  Enabled: false
