@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -36,28 +38,32 @@ gem 'bootsnap', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+gem 'devise'
+gem 'devise-jwt'
+gem 'jsonapi-serializer'
 
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
+group :development, :test do
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
 end
 
 group :development do
-  gem 'listen', '~> 3.7'
   # Intellisense, code completion, and inline documentation
   gem 'solargraph', require: false
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 end
 
 group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'jsonapi-rspec'
+  gem 'rspec-rails'
+  gem 'rubocop-rspec', require: false
   gem 'shoulda-matchers'
-  gem 'simplecov', require: false
 end
