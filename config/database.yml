@@ -51,6 +51,10 @@ test:
 #
 production:
   <<: *default
+  adapter: mysql2
   database: invoices_api_production
-  username: invoices_api
-  password: <%= ENV["INVOICES_API_DATABASE_PASSWORD"] %>
+  username: <%= ENV["USERNAME"] %>
+  host: <%= ENV["ACCESS_HOST_URL"] %>
+  password: <%= ENV["PASSWORD"] %>
+  ssl_mode: :verify_identity
+  sslca: '/etc/ssl/certs/ca-certificates.crt'
