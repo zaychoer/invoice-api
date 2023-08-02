@@ -1,24 +1,93 @@
-# README
+# Invoice API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+Invoice REST API
 
-* Ruby version
+## Prerequisites
 
-* System dependencies
+- Docker desktop
+- Ruby: 3.2.2
+- Rails: 7.0.6
+- MYSQL: 8 (Optional)
 
-* Configuration
+## Features
 
-* Database creation
+- [x] Database MYSQL
+- [x] Sign in and sign up via email.
+- [x] Docker containers for Ruby on Rails development in Visual Studio Code. ([References](https://dev.to/konyu/how-to-use-docker-containers-for-ruby-on-rails-development-in-visual-studio-code-23np)).
+- [x] Rspec. ([Refrences](https://rspec.info/))
+- [x] Solargraph. ([References](https://solargraph.org/))
+- [x] Rubocop. ([References](https://rubocop.org/))
+- [x] Swagger (Need Improvement). ([References](https://github.com/rswag/rswag))
 
-* Database initialization
+## Quick run
 
-* How to run the test suite
+```bash
+git clone https://github.com/zaychoer/invoices-api.git
+cd invoices-api
+docker compose up -d
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+For check status run
 
-* Deployment instructions
+```bash
+docker compose logs
+```
 
-* ...
+### Commands
+
+If you set up Docker Compose to start Rails at startup, it is convenient to compare the commands to Rails from outside the container and the commands to Rails from inside the container, as shown in the table below.
+
+| Commands to Rails from outside the container                   | Commands to Rails from inside the container |
+| -------------------------------------------------------------- | ------------------------------------------- |
+| docker compose run --rm web bundle install                     | bundle install                              |
+| docker compose run --rm web bin/rails db:migrate               | bin/rails db:migrate                        |
+| docker compose exec web bin/rails c                            | bin/rails c                                 |
+| docker compose exec web bundle exec rspec                      | bundle exec rspec                           |
+| docker compose run -e EDITOR=vi web bin/rails credentials:edit | bin/rails credentials:edit                  |
+
+## Comfortable development
+
+```bash
+git clone https://github.com/zaychoer/invoices-api.git
+cd invoices-api
+bundle install
+rails db:migrate
+```
+
+Run additional container:
+
+```bash
+docker compose up -d db adminer
+```
+
+## Links
+
+- Swagger: http://localhost:3000/api-docs
+- Adminer (client for DB): http://localhost:9090/
+
+```bash
+Auth for Adminer
+System : MySQL
+Server : db
+User : root
+Password : password
+```
+
+## Tests
+
+```bash
+bundle exec rspec
+```
+
+## Tests in Docker
+
+```bash
+docker compose exec web bundle exec rspec
+```
+
+## References
+
+- Rails 7: API-only app with Devise and JWT for authentication. ([Link](https://rspec.info/))
+- How to use Docker containers for Ruby on Rails development in Visual Studio Code. ([Link](https://dev.to/konyu/how-to-use-docker-containers-for-ruby-on-rails-development-in-visual-studio-code-23np))
