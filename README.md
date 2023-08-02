@@ -26,6 +26,7 @@ Invoice REST API
 ```bash
 git clone https://github.com/zaychoer/invoices-api.git
 cd invoices-api
+cp env-example .env
 docker compose up -d
 ```
 
@@ -52,9 +53,14 @@ If you set up Docker Compose to start Rails at startup, it is convenient to comp
 ```bash
 git clone https://github.com/zaychoer/invoices-api.git
 cd invoices-api
+cp env-example .env
 bundle install
 rails db:migrate
 ```
+
+- Change `DB_USER=your-own-user`
+- Change `DB_HOST=your-own-db-host`
+- Change `DB_PASSWORD=your-own-db-password`
 
 Run additional container:
 
