@@ -87,6 +87,10 @@ bundle exec rspec
 docker compose exec web bundle exec rspec
 ```
 
+## Tests with Postman
+
+- Invoice Api Postman Collection ([Link](https://github.com/zaychoer/invoice-api/blob/main/Invoice%20API.postman_collection.json))
+
 ## References
 
 - Rails 7: API-only app with Devise and JWT for authentication. ([Link](https://rspec.info/))
