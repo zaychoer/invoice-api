@@ -43,6 +43,7 @@ gem 'devise-jwt'
 gem 'jsonapi-serializer'
 
 gem 'api-pagination'
+gem 'dotenv-rails'
 gem 'pagy'
 gem 'rswag'
 
