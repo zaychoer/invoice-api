@@ -72,3 +72,5 @@ group :test do
   gem 'rubocop-rspec', require: false
   gem 'shoulda-matchers'
 end
+
+gem "dockerfile-rails", ">= 1.5", :group => :development

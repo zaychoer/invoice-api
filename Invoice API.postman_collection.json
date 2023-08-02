@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "3353cbbc-2429-48f7-9a19-1a83d723f189",
+		"name": "Invoice API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9579131"
+	},
+	"item": [
+		{
+			"name": "Sign up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"email\": \"test@test.com\",\n        \"password\": \"Admin12345\",\n        \"confirmation_password\": \"Admin12345\",\n        \"name\": \"John Doe\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"email\": \"test@test.com\",\n        \"password\": \"Admin12345\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create invoice",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5NzBiOTI2Ni1iZmRiLTQ3OWUtODYzOS1jYzhkZjZlZDA4YmUiLCJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjkwOTY1MTE5LCJleHAiOjE2OTA5NzIzMTl9.cCTFrgQeCUIU735MwlW1rzhCOI4hEK7JBJNkcwW1ZDk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"invoice\": {\n        \"invoice_number\": \"INV002\",\n        \"due_date\": \"2023-08-15\",\n        \"invoice_items_attributes\": [\n            {\n                \"name\": \"Product 1\",\n                \"qty\": 5,\n                \"unit_price\": 10.0\n            },\n            {\n                \"name\": \"Product 2\",\n                \"qty\": 3,\n                \"unit_price\": 15.0\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/invoices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get list invoices",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5NzBiOTI2Ni1iZmRiLTQ3OWUtODYzOS1jYzhkZjZlZDA4YmUiLCJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjkwOTY1MTE5LCJleHAiOjE2OTA5NzIzMTl9.cCTFrgQeCUIU735MwlW1rzhCOI4hEK7JBJNkcwW1ZDk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/invoices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NzVmODZjMC00ZTA3LTRkYWMtYjhhNC1mY2RjOTc3NWM2ZDIiLCJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjkwOTYzNTU2LCJleHAiOjE2OTA5NzA3NTZ9.6V0dCK7y5R2BOl8gznTJbz-AgTA_q-71otZCMZIMjIQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
