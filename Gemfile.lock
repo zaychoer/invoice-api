@@ -66,6 +66,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    addressable (2.8.4)
+      public_suffix (>= 2.0.2, < 6.0)
     api-pagination (5.0.0)
     ast (2.4.2)
     backport (1.2.0)
@@ -123,6 +125,8 @@ GEM
       reline (>= 0.3.6)
     jaro_winkler (1.5.6)
     json (2.6.3)
+    json-schema (3.0.0)
+      addressable (>= 2.8)
     jsonapi-rspec (0.0.11)
       rspec-core
       rspec-expectations
@@ -168,6 +172,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
     racc (1.7.1)
@@ -233,6 +238,20 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
+    rswag (2.10.1)
+      rswag-api (= 2.10.1)
+      rswag-specs (= 2.10.1)
+      rswag-ui (= 2.10.1)
+    rswag-api (2.10.1)
+      railties (>= 3.1, < 7.1)
+    rswag-specs (2.10.1)
+      activesupport (>= 3.1, < 7.1)
+      json-schema (>= 2.2, < 4.0)
+      railties (>= 3.1, < 7.1)
+      rspec-core (>= 2.14)
+    rswag-ui (2.10.1)
+      actionpack (>= 3.1, < 7.1)
+      railties (>= 3.1, < 7.1)
     rubocop (1.55.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -320,6 +339,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.6)
   rspec-rails
+  rswag
   rubocop
   rubocop-performance
   rubocop-rails

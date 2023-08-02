@@ -1,0 +1,195 @@
+---
+openapi: 3.0.1
+info:
+  title: INVOICE API V1
+  version: v1
+paths:
+  "/api/v1/invoices":
+    get:
+      summary: list invoices
+      tags:
+      - Invoices
+      parameters:
+      - invoice_number: query
+        in: query
+        description: optional invoice_number to search
+        required: false
+        schema:
+          type: string
+      - name: page[size]
+        in: query
+        description: number of invoices per page
+        required: false
+        schema:
+          type: integer
+      - name: page[number]
+        in: query
+        description: page number
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    "$ref": "#/components/schemas/pagination"
+                  data:
+                    type: object
+                    properties:
+                      invoices:
+                        type: array
+                        items:
+                          "$ref": "#/components/schemas/invoice"
+                    required:
+                    - invoices
+    post:
+      summary: create invoice
+      tags:
+      - Invoices
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invoice_number:
+                  type: string
+                due_date:
+                  type: string
+                invoice_items_attributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      qty:
+                        type: number
+                      unit_price:
+                        type: number
+              required:
+              - invoice_number
+              - due_date
+  "/api/v1/invoices/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show invoice
+      tags:
+      - Invoices
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update invoice
+      tags:
+      - Invoices
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update invoice
+      tags:
+      - Invoices
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete invoice
+      tags:
+      - Invoices
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000
+components:
+  schemas:
+    pagination:
+      type: object
+      properties:
+        recordCount:
+          type: integer
+        pageCount:
+          type: integer
+        currentPage:
+          type: integer
+        pageSize:
+          type: integer
+      required:
+      - recordCount
+      - pageCount
+      - currentPage
+      - pageSize
+    error_response:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: type of error
+              message:
+                type: string
+                nullable: true
+            required:
+            - type
+            - message
+        status:
+          type: integer
+      required:
+      - errors
+      - status
+    invoice:
+      type: object
+      properties:
+        id:
+          type: integer
+        invoice_number:
+          type: string
+        due_date:
+          type: string
+        invoice_items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              invoice_id:
+                type: integer
+              qty:
+                type: integer
+              unit_price:
+                type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    securitySchemes:
+      bearerAuth:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+security:
+- bearerAuth: []
