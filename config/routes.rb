@@ -15,9 +15,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :invoices do
-        resources :invoice_items, shallow: true
-      end
+      resources :invoices
     end
   end
 end
