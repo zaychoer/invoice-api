@@ -10,8 +10,6 @@ services:
       - 3000:3000
     depends_on:
       - db
-    links:
-      - db
     environment:
       DB_USER: root
       DB_NAME: invoice
@@ -19,6 +17,8 @@ services:
       DB_HOST: db
     tty: true
     stdin_open: true
+    networks:
+      - invoice-app
   db:
     image: mysql:8
     restart: always
@@ -32,6 +32,26 @@ services:
       TZ: "Asia/Jakarta"
     ports:
       - "3306:3306"
+    networks:
+    - invoice-app
+
+  invoice-adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - '9090:8080'
+    environment:
+      - ADMINER_DEFAULT_SERVER=db
+    networks:
+      - invoice-app
+    depends_on:
+      - db
+
 volumes:
     bundle-volume:
     mysql-volume:
+
+networks:
+  invoice-app:
+    name: Invoice-app
+    driver: bridge
