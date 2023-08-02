@@ -24,10 +24,27 @@ Invoice REST API
 ## Quick run
 
 ```bash
-git clone https://github.com/zaychoer/invoices-api.git
+git clone https://github.com/zaychoer/invoice-api.git
 cd invoices-api
 cp env-example .env
 docker compose up -d
+docker compose run --rm web bundle install
+docker compose run --rm web bin/rails db:create
+docker compose run --rm web bin/rails db:migrate
+```
+
+### Generate `devise_jwt_secret_key` before running `docker compose up -d`
+
+```bash
+rake secret -> generate key
+
+EDITOR="code --wait" rails credentials:edit -> to open credential.yaml.enc file
+```
+
+Place your generate key inside credentials.yaml.enc like this
+
+```bash
+devise_jwt_secret_key: generate key
 ```
 
 For check status run
@@ -51,11 +68,26 @@ If you set up Docker Compose to start Rails at startup, it is convenient to comp
 ## Comfortable development
 
 ```bash
-git clone https://github.com/zaychoer/invoices-api.git
+git clone https://github.com/zaychoer/invoice-api.git
 cd invoices-api
 cp env-example .env
 bundle install
+rails db:create
 rails db:migrate
+```
+
+### Generate `devise_jwt_secret_key` before running `bundle install`
+
+```bash
+rake secret -> generate key
+
+EDITOR="code --wait" rails credentials:edit -> to open credential.yaml.enc file
+```
+
+Place your generate key inside credentials.yaml.enc like this
+
+```bash
+devise_jwt_secret_key: generate key
 ```
 
 - Change `DB_USER=your-own-user`
